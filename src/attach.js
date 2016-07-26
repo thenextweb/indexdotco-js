@@ -95,10 +95,18 @@ const attach = function(typeOrTypes) {
 	else {
 		let type = typeOrTypes;
 		if(type === 'icon') {
-			$('a.'+config.prefix+'hasIcon').each(function(){attachIcon($(this))});
+			$('a.'+config.prefix+'hasIcon').each(
+				function(){
+					attachIcon($(this))
+				}
+			);
 		}
 		else if(type === 'card') {
-			$('a.'+config.prefix+'hasCard').each(function(){attachCard($(this))});
+			$('a.'+config.prefix+'hasCard').each(
+				function(){
+					attachCard($(this))
+				}
+			);
 		}
 		else {
 			throw `Invalid object type (${type})`;
