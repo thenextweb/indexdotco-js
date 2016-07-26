@@ -23,7 +23,7 @@ gulp.task('default', function() {
 			watch: true,
 			devtool: 'source-map',
 			output: {
-				filename: 'puragi-dev.js'
+				filename: 'indexdotco-dev.js'
 			},
 			module: webpackModule
 		}))
