@@ -6,13 +6,18 @@ import parseElement from 'tool/parseElement';
 import requestCardData from 'tool/requestCardData';
 
 
+var elementCreated = new Event(config.prefix+'elementCreated',{bubbles:true});
+var popoverCreated = new Event(config.prefix+'popoverCreated',{bubbles:true});
+
+
 var attachCard = function($element) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestCardData(parsedElement.company);
 	var $card = $('<div></div>').addClass(config.prefix+'cardStandalone')
 
-	$element.replaceWith($card)
+	$element.replaceWith($card);
+	$element = $card;
 
 	rq.done(function(data){
 		try {
@@ -21,13 +26,9 @@ var attachCard = function($element) {
 				actionable:true
 			});
 			$card.append(card.domElement);
+			$element[0].dispatchEvent(elementCreated);
 		} catch(error){
-			if(error === 'BAD_STRUCTURE') {
-				console.error(`[index Popovers] parsing error loading Card for ${parsedElement.company}`)
-			}
-			else {
-				throw error;
-			}
+			console.error(`[index] error building card for ${parsedElement.company}`);
 		}
 	})
 
@@ -62,13 +63,10 @@ var attachIcon = function($element) {
 						$element.data(config.prefix+'hasIndexPopover',false);
 					});
 					popover.place();
+					$element[0].dispatchEvent(elementCreated);
 				} catch(error){
-					if(error === 'BAD_STRUCTURE') {
-						console.error(`[index Popovers] parsing error loading Popover for ${parsedElement.company}`)
-					}
-					else {
-						throw error;
-					}
+					console.error(error);
+					console.error(`[index] error building popover for ${parsedElement.company}`);
 				}
 			})
 		}
@@ -79,6 +77,12 @@ var attachIcon = function($element) {
 			rq.abort();
 		}
 	});
+
+	$element[0].dispatchEvent(popoverCreated);
+
+	if (typeof window.callPhantom === 'function') {
+		$element.trigger('mouseover');
+	}
 
 };
 

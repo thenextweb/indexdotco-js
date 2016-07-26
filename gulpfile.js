@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var uglify = require('gulp-uglify');
 var path = require('path');
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 var webpackModule = {
 	loaders: [
@@ -17,6 +18,19 @@ var webpackModule = {
 		}
 	]
 };
+
+gulp.task('test', function () {
+    return gulp
+    .src('test/basic.html')
+    .pipe(mochaPhantomJS({
+        suppressStderr: true,
+		phantomjs: {
+			settings: {
+				webSecurityEnabled: false
+			}
+		}
+	}));
+});
 
 gulp.task('default', function() {
 	return gulp.src('src/index.js')
@@ -46,5 +60,5 @@ gulp.task('make', function() {
 			}
 		}))
 		.pipe(uglify())
-		.pipe(gulp.dest('dist/'));
+		.pipe(gulp.dest('dist/'))
 })
