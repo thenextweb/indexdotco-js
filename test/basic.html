@@ -2,7 +2,6 @@
 <html lang="en">
 	<head>
 		<title>Test page</title>
-		<script src="dist/indexdotco-dev.js" async></script>
 	</head>
 	<body>
 
@@ -16,6 +15,40 @@
 		<a href='https://index.co/company/uber' data-index='' target='_blank' class='idc-hasCard'></a>
 		<hr>
 		<a href='https://index.co/company/indexdotco' data-index='' target='_blank' class='idc-hasIcon'></a>
+		<a href='https://index.co/company/thenextweb' data-index='' target='_blank' class='idc-hasIcon'></a>
+		<a href='https://index.co/company/uber' data-index='' target='_blank' class='idc-hasIcon'></a>
+		<hr>
+		<div id="mocha"></div>
+
+
+
+
+		<script src="../node_modules/mocha/mocha.js"></script>
+		<script>
+			mocha.setup('bdd');
+		</script>
+		<script>
+			describe('basics', function() {
+				this.timeout(10000);
+				var completeAt = 6;
+				var completed = 0;
+				it('should display 6 cards', function(done) {
+					document.addEventListener('idc-elementCreated',function(){
+						completed++;
+						if(completed >= completeAt) {
+							done();
+						}
+					})
+					document.addEventListener('idc-popoverCreated',function(ev){
+						$(ev.target).trigger('mouseover');
+					})
+				});
+			});
+		</script>
+		<script>
+			mocha.run();
+		</script>
+		<script src="../dist/indexdotco.js"></script>
 
 
 
