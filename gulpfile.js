@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var webpack = require('webpack-stream');
 var uglify = require('gulp-uglify');
+var path = require('path');
 
 var webpackModule = {
 	loaders: [
@@ -25,7 +26,10 @@ gulp.task('default', function() {
 			output: {
 				filename: 'indexdotco-dev.js'
 			},
-			module: webpackModule
+			module: webpackModule,
+			resolve: {
+				root: path.resolve('./src')
+			}
 		}))
 		.pipe(gulp.dest('dist/'));
 });
@@ -36,7 +40,10 @@ gulp.task('make', function() {
 			output: {
 				filename: 'indexdotco.js'
 			},
-			module: webpackModule
+			module: webpackModule,
+			resolve: {
+				root: path.resolve('./src')
+			}
 		}))
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/'));

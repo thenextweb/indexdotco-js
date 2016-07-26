@@ -1,4 +1,5 @@
-import config from './config';
+import config from 'config';
+import Card from 'element/Card';
 
 /*todo: refactor this into smaller files, leave just the attacher*/
 
@@ -87,60 +88,6 @@ var Hovercard = function(params) {
 
 
 
-var makeCardHtml = function(data,params) {
-	if(!data || !data.profile || !data.info) {
-		throw 'BAD_STRUCTURE';
-	}
-	if(!params) {
-		var params = {};
-	}
-	var $header = $('<a></a>')
-	$header.addClass(cardPrefix+'header');
-	$header.attr('href',data.profile.index_url)
-	$header.append($('<img></img>').attr({
-		'src': data.profile.avatar,
-		'class': cardPrefix+'header-avatar'
-	}));
-	$header.append($('<h2></h2>').attr({
-		'class': cardPrefix+'header-title'
-	}).text(data.profile.name));
-
-	var $headerTags = $('<ul></ul>').attr({
-		'class': cardPrefix+'header-tags'
-	})
-	if(data.info.market) $headerTags.append($('<li></li>').text(data.info.market));
-	if(data.info.country) $headerTags.append($('<li></li>').text(data.info.country));
-	$header.append($headerTags);
-
-	var $facts = $('<div></div>').addClass(cardPrefix+'facts');
-	var $factsTags = $('<ul></ul>').attr({
-		'class': cardPrefix+'facts-tags'
-	});
-	if(data.info.founded) $factsTags.append($('<li></li>').text('Founded in ' + data.info.founded));
-	if(data.info.raised) $factsTags.append($('<li></li>').text('Raised ' + data.info.raised));
-	if(data.info.employees) $factsTags.append($('<li></li>').text(data.info.employees + ' employees'));
-	$facts.append($factsTags);
-
-	var $footer = $('<a></a>');
-	$footer.addClass(cardPrefix+'footer');
-	$footer.attr('href',data.profile.index_url);
-
-	if(params.actionable){
-		$footer.html('<p>View this company on index</p>');
-	}
-	else {
-		$footer.html('<p>Click the icon below to view profile</p>');
-	}
-	var $card = $('<div></div>').addClass(prefix+'card').append($header).append($facts).append($footer);
-
-	if(params.actionable){
-		$card.addClass(prefix+'card--actionable');
-	}
-	return $card;
-}
-
-
-
 var parseElement = function($element) {
 
 	var parser = document.createElement('a');
@@ -187,7 +134,8 @@ var attachCard = function($element) {
 
 	rq.done(function(data){
 		try {
-			$card.append(makeCardHtml(data,{actionable:true}));
+			let card = new Card(data,{actionable:true});
+			$card.append(card.domElement);
 		} catch(error){
 			console.error('[index hovercards] parsing error ('+error+') loading hovercard for "'+company+'" at endpoint "'+url+'"');
 		}
@@ -211,8 +159,9 @@ var attachIcon = function($element) {
 				$element.data(prefix+'hasIndexPopover',true);
 				rq.done(function(data){
 					try {
+						let card = new Card(data);
 						hovercard = new Hovercard({
-							html: makeCardHtml(data),
+							html: card.domElement,
 							top: $element.offset().top,
 							left: $element.offset().left + ($element.outerWidth() / 2)
 						});
