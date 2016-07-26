@@ -1,18 +1,15 @@
 import config from 'config';
+import AbstractElement from './AbstractElement';
 
-export default class Card {
+export default class Card extends AbstractElement {
 
-	get domElement(){
-		return this.$card;
-	}
+	makeElement(params) {
 
-	constructor(data,params) {
+		let data = params.data;
 		if(!data || !data.profile || !data.info) {
 			throw 'BAD_STRUCTURE';
 		}
-		if(!params) {
-			var params = {};
-		}
+
 		var $header = $('<a></a>')
 		$header.addClass(config.cardPrefix+'header');
 		$header.attr('href',data.profile.index_url)
@@ -62,11 +59,13 @@ export default class Card {
 			$footer.html('<p>Click the icon below to view profile</p>');
 		}
 
-		this.$card = $('<div></div>').addClass(config.prefix+'card').append($header).append($facts).append($footer);
+		let $element = $('<div></div>').addClass(config.prefix+'card').append($header).append($facts).append($footer);
 
 		if(params.actionable){
-			this.$card.addClass(config.prefix+'card--actionable');
+			$element.addClass(config.prefix+'card--actionable');
 		}
+
+		return $element;
 
 	}
 

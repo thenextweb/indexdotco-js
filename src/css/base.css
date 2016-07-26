@@ -1,3 +1,17 @@
+.idc-card *, .idc-popover, .idc-card, .idc-cardStandalone {
+	clear: none;
+	display: block;
+	float: none;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	border: none;
+	text-align: inherit;
+	list-style: none;
+	color: inherit;
+	text-decoration: none;
+}
+
 .idc-hasIcon {
 	text-decoration: none!important;
 	border: none!important;
@@ -16,7 +30,7 @@
 	top: -2px;
 }
 
-.idc-hovercard {
+.idc-popover {
 	position: absolute;
 	border-radius: 2px;
 	background-color: #000;
@@ -29,7 +43,7 @@
 	width: 18em;
 	pointer-events: none;
 }
-.idc-hovercard:before {
+.idc-popover:before {
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -46,11 +60,11 @@
 	line-height: 0;
 }
 
-.idc-hovercard.idc-hovercard--in {
+.idc-popover.idc-popover--in {
 	animation: idc-hovercardFade 100ms forwards ease-in-out;
 }
 
-.idc-hovercard.idc-hovercard--out {
+.idc-popover.idc-popover--out {
 	animation: idc-hovercardFade 100ms forwards ease-in-out reverse;
 }
 
@@ -73,20 +87,6 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-}
-
-.idc-card * {
-	clear: none;
-	display: block;
-	float: none;
-	margin: 0;
-	padding: 0;
-	box-shadow: none;
-	border: none;
-	text-align: inherit;
-	list-style: none;
-	color: inherit;
-	text-decoration: none;
 }
 
 .idc-card-header-avatar {
