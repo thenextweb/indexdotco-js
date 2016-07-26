@@ -3,4 +3,6 @@ node_js:
   - "6"
 before_script:
   - npm install -g gulp
-script: npm install
+script:
+  - npm install
+  - gulp test
