@@ -1,6 +1,7 @@
 # indexdotco-js
 JS for Index.co embeds in external sites
-![showcase](https://github.com/thenextweb/index-wordpress-plugin/blob/master/example.png "How it works")
+
+![showcase](https://github.com/thenextweb/indexdotco-js/blob/master/cover.png "How it works")
 
 ## Usage
 Just add `dist/indexdotco.js` to your site.
