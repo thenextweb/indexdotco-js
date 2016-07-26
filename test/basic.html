@@ -28,11 +28,11 @@
 			mocha.setup('bdd');
 		</script>
 		<script>
-			describe('basics', function() {
+			describe('readyness', function() {
 				this.timeout(10000);
 				var completeAt = 6;
 				var completed = 0;
-				it('should display 6 cards', function(done) {
+				it('Render 6 cards', function(done) {
 					document.addEventListener('idc-elementCreated',function(){
 						completed++;
 						if(completed >= completeAt) {
@@ -41,7 +41,7 @@
 					})
 					document.addEventListener('idc-popoverCreated',function(ev){
 						$(ev.target).trigger('mouseover');
-					})
+					});
 				});
 			});
 		</script>
