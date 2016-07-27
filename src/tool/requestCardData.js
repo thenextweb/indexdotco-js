@@ -4,9 +4,9 @@ export default function(company) {
 
 	let url = config.endpoint+'company/'+company+'?version='+config.version;
 
-	$.support.cors = true;
-	
-	var rq = $.ajax({
+	window.jQuery.support.cors = true;
+
+	var rq = window.jQuery.ajax({
 		dataType: "json",
 		type: 'GET',
 		url: url

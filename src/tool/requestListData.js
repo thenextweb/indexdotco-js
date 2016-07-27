@@ -4,7 +4,7 @@ export default function(list) {
 
 	let url = config.endpoint+'list/'+list+'?version='+config.version;
 
-	var rq = $.ajax({
+	var rq = window.jQuery.ajax({
 		dataType: "json",
 		type: 'GET',
 		url: url

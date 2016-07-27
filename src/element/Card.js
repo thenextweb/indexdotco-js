@@ -10,45 +10,45 @@ export default class Card extends AbstractElement {
 			throw 'BAD_STRUCTURE';
 		}
 
-		var $header = $('<a></a>')
+		var $header = window.jQuery('<a></a>')
 		$header.addClass(config.cardPrefix+'header');
 		$header.attr('href',data.profile.index_url)
-		$header.append($('<img></img>').attr({
+		$header.append(window.jQuery('<img></img>').attr({
 			'src': data.profile.avatar,
 			'class': config.cardPrefix+'header-avatar'
 		}));
-		$header.append($('<h2></h2>').attr({
+		$header.append(window.jQuery('<h2></h2>').attr({
 			'class': config.cardPrefix+'header-title'
 		}).text(data.profile.name));
 
-		var $headerTags = $('<ul></ul>').attr({
+		var $headerTags = window.jQuery('<ul></ul>').attr({
 			'class': config.cardPrefix+'header-tags'
 		})
 		if(data.info.market) {
-			$headerTags.append($('<li></li>').text(data.info.market));
+			$headerTags.append(window.jQuery('<li></li>').text(data.info.market));
 		}
 		if(data.info.country) {
-			$headerTags.append($('<li></li>').text(data.info.country));
+			$headerTags.append(window.jQuery('<li></li>').text(data.info.country));
 		}
 
 		$header.append($headerTags);
 
-		var $facts = $('<div></div>').addClass(config.cardPrefix+'facts');
-		var $factsTags = $('<ul></ul>').attr({
+		var $facts = window.jQuery('<div></div>').addClass(config.cardPrefix+'facts');
+		var $factsTags = window.jQuery('<ul></ul>').attr({
 			'class': config.cardPrefix+'facts-tags'
 		});
 		if(data.info.founded) {
-			$factsTags.append($('<li></li>').text('Founded in ' + data.info.founded));
+			$factsTags.append(window.jQuery('<li></li>').text('Founded in ' + data.info.founded));
 		}
 		if(data.info.raised) {
-			$factsTags.append($('<li></li>').text('Raised ' + data.info.raised));
+			$factsTags.append(window.jQuery('<li></li>').text('Raised ' + data.info.raised));
 		}
 		if(data.info.employees){
-			$factsTags.append($('<li></li>').text(data.info.employees + ' employees'));
+			$factsTags.append(window.jQuery('<li></li>').text(data.info.employees + ' employees'));
 		}
 		$facts.append($factsTags);
 
-		var $footer = $('<a></a>');
+		var $footer = window.jQuery('<a></a>');
 		$footer.addClass(config.cardPrefix+'footer');
 		$footer.attr('href',data.profile.index_url);
 
@@ -59,7 +59,7 @@ export default class Card extends AbstractElement {
 			$footer.html('<p>Click the icon below to view profile</p>');
 		}
 
-		let $element = $('<div></div>').addClass(config.prefix+'card').append($header).append($facts).append($footer);
+		let $element = window.jQuery('<div></div>').addClass(config.prefix+'card').append($header).append($facts).append($footer);
 
 		if(params.actionable){
 			$element.addClass(config.prefix+'card--actionable');

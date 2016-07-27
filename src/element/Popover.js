@@ -14,13 +14,13 @@ export default class Popover extends AbstractElement {
 		var mouseOrigin = 0;
 		var $element = self.$element;
 
-		$(document).on('mousemove.popoverCloser',function(ev) {
+		window.jQuery(document).on('mousemove.popoverCloser',function(ev) {
 			var distance = calculateDistance($element, ev.pageX, ev.pageY);
 			distance = Math.round(distance/5)
 			if(mouseOrigin === 0){
 				mouseOrigin = distance;
 			} else {
-				if(mouseOrigin-distance < -4 && !$element.is($(ev.target)) && !$element.has($(ev.target)).length > 0 ){
+				if(mouseOrigin-distance < -4 && !$element.is(window.jQuery(ev.target)) && !$element.has(window.jQuery(ev.target)).length > 0 ){
 					tout = setTimeout(function(){
 						self.remove();
 					},100);
@@ -74,7 +74,7 @@ export default class Popover extends AbstractElement {
 
 	makeElement(params){
 
-		let $popover = $('<div></div>')
+		let $popover = window.jQuery('<div></div>')
 
 		this.position = {
 			top: params.top,

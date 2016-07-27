@@ -15,7 +15,7 @@ var attachCard = function($element) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestCardData(parsedElement.entity);
-	var $card = $('<div></div>').addClass(config.prefix+'cardStandalone')
+	var $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone')
 
 	$element.replaceWith($card);
 	$element = $card;
@@ -40,7 +40,7 @@ var attachList = function($element) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestListData(parsedElement.entity);
-	var $card = $('<div></div>').addClass(config.prefix+'cardStandalone');
+	var $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone');
 
 	$element.replaceWith($card);
 	rq.done(function(many_data){
@@ -125,23 +125,23 @@ const attach = function(typeOrTypes) {
 	else {
 		let type = typeOrTypes;
 		if(type === 'icon') {
-			$('a.'+config.prefix+'hasIcon').each(
+			window.jQuery('a.'+config.prefix+'hasIcon').each(
 				function(){
-					attachIcon($(this))
+					attachIcon(window.jQuery(this))
 				}
 			);
 		}
 		else if(type === 'card') {
-			$('a.'+config.prefix+'hasCard').each(
+			window.jQuery('a.'+config.prefix+'hasCard').each(
 				function(){
-					attachCard($(this))
+					attachCard(window.jQuery(this))
 				}
 			);
 		}
 		else if(type === 'list') {
-			$('a.'+config.prefix+'hasList').each(
+			window.jQuery('a.'+config.prefix+'hasList').each(
 				function(){
-					attachList($(this))
+					attachList(window.jQuery(this))
 				}
 			);
 		}

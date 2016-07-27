@@ -15,11 +15,11 @@ export default class AbstractElement {
 	}
 
 	makeElement(params) {
-		return $('<div></div>');
+		return window.jQuery('<div></div>');
 	}
 
 	place($location) {
-		if(!$location) $location = $('body');
+		if(!$location) $location = window.jQuery('body');
 		$location.append(this.domElement);
 	}
 
