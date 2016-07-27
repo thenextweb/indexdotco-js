@@ -4,6 +4,7 @@ import Popover from 'element/Popover';
 
 import parseElement from 'tool/parseElement';
 import requestCardData from 'tool/requestCardData';
+import requestListData from 'tool/requestListData';
 
 
 var elementCreated = new Event(config.prefix+'elementCreated',{bubbles:true});
@@ -13,7 +14,7 @@ var popoverCreated = new Event(config.prefix+'popoverCreated',{bubbles:true});
 var attachCard = function($element) {
 
 	var parsedElement = parseElement($element);
-	var rq = requestCardData(parsedElement.company);
+	var rq = requestCardData(parsedElement.entity);
 	var $card = $('<div></div>').addClass(config.prefix+'cardStandalone')
 
 	$element.replaceWith($card);
@@ -28,22 +29,48 @@ var attachCard = function($element) {
 			$card.append(card.domElement);
 			$element[0].dispatchEvent(elementCreated);
 		} catch(error){
-			console.error(`[index] error building card for ${parsedElement.company}`);
+			console.error(`[index] error building card for ${parsedElement.entity}`);
 		}
 	})
 
 }
 
 
+var attachList = function($element) {
+
+	var parsedElement = parseElement($element);
+	var rq = requestListData(parsedElement.entity);
+	var $card = $('<div></div>').addClass(config.prefix+'cardStandalone');
+
+	$element.replaceWith($card);
+	rq.done(function(many_data){
+		try {
+			let base = $card.clone();
+			for (const data of many_data) {
+				let card = new Card({
+					data:data,
+					actionable:true
+				});
+				$card.append(card.domElement);
+				let $a = base.clone();
+				$card.after($a);
+				$card = $a;
+			}
+			$card.remove();
+		} catch(error){
+			console.error(`[index] error building list for ${parsedElement.entity}`);
+		}
+	});
+}
 
 
 var attachIcon = function($element) {
 
 	var parsedElement = parseElement($element);
-	var rq = requestCardData(parsedElement.company);
+	var rq = requestCardData(parsedElement.entity);
 
 	$element.attr('target', '_blank').attr({
-		'href': parsedElement.href + '?utm_source=thenextweb.com&utm_medium=referral&utm_campaign=hover-'+parsedElement.company
+		'href': parsedElement.href + '?utm_source=thenextweb.com&utm_medium=referral&utm_campaign=hover-'+parsedElement.entity
 	});
 
 	$element.on('mouseover',function(ev){
@@ -65,8 +92,7 @@ var attachIcon = function($element) {
 					popover.place();
 					$element[0].dispatchEvent(elementCreated);
 				} catch(error){
-					console.error(error);
-					console.error(`[index] error building popover for ${parsedElement.company}`);
+					console.error(`[index] error building popover for ${parsedElement.entity}`);
 				}
 			})
 		}
@@ -109,6 +135,13 @@ const attach = function(typeOrTypes) {
 			$('a.'+config.prefix+'hasCard').each(
 				function(){
 					attachCard($(this))
+				}
+			);
+		}
+		else if(type === 'list') {
+			$('a.'+config.prefix+'hasList').each(
+				function(){
+					attachList($(this))
 				}
 			);
 		}

@@ -10,6 +10,6 @@ document.body.appendChild(cssTag);
 
 loadJQuery(function(){
 	$(function(){
-		attach(['icon','card']);
+		attach(['icon','card','list']);
 	});
 })
