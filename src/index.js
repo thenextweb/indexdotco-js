@@ -8,7 +8,7 @@ cssTag.type = "text/css";
 cssTag.innerHTML= css;
 
 loadJQuery(function(){
-	$(function(){
+	window.jQuery(function(){
 		document.body.appendChild(cssTag);
 		attach(['icon','card','list']);
 	});
