@@ -37,7 +37,6 @@
 	background-color: rgba(51, 51, 51, 0.98);
 	color: #fff;
 	text-align: center;
-	font-size: 14px;
 	line-height: 1.2;
 	z-index: 99999;
 	width: 18em;
@@ -69,16 +68,16 @@
 }
 
 .idc-cardStandalone {
-	border: 1px solid rgba(0,0,0,.125);
+	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
-	max-width: 28em;
-	min-width: 16em;
-	min-height: 14em;
+	width: 18em;
+	height: 16em;
 	display: inline-block;
 }
 
 .idc-cardStandalone .idc-card {
-	min-height: 14em;
+	height: 100%;
+	width: 100%;
 }
 
 .idc-card {
@@ -89,54 +88,87 @@
 	justify-content: space-between;
 }
 
+.idc-card-header {
+	display: flex;
+	align-items: center;
+	padding: 1em;
+	border-bottom: 1px solid rgba(0,0,0,.075);
+	text-align: left;
+	overflow: hidden;
+}
+
 .idc-card-header-avatar {
 	width: 3.8em;
 	height: 3.8em;
 	border-radius: 2px;
 	margin-right: 1em;
+	display: block;
 	float: left;
 	box-shadow: 0 0 0 1px rgba(0,0,0,.075);
 }
+.idc-card-header-meta {
+	display: block;
+	float: left;
+}
 .idc-card-header-title {
-	font-size: 1.2em;
+	font-size: 1em;
 	font-weight: bold;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.idc-card-header-tags {
+	max-height: 2.4em;
+	font-size: .7em;
+	overflow: hidden;
+	margin-top: .5em;
+}
 .idc-card-header-tags li {
-	display: inline-block;
-	text-transform: uppercase;
-	font-size: .75em;
-	margin-right: .5em;
+	display: block;
+	float: left;
+	margin-right: .25em;
+	height: 1.2em;
+	line-height: 1.2em;
 	font-style: normal;
-	opacity: .75;
+	opacity: .5;
+}
+.idc-card-header-tags li:not(:last-child):after {
+	content:', ';
 }
 .idc-card-header-tags li:before {
 	font-size: .8em;
-}
-
-.idc-card-header {
-	padding: 1em;
-	border-bottom: 1px solid rgba(0,0,0,.125);
-	text-align: left;
-	overflow: hidden;
 }
 
 .idc-card-header:hover .idc-card-header-title {
 	color: #3af;
 }
 
+.idc-card-tagline {
+	padding: 1em 1em 0;
+	line-height: 1.4em;
+	max-height: 2.8em;
+	text-align: left;
+	font-weight: 300;
+	overflow: hidden;
+	flex: 1 .1 0;
+}
+
 .idc-card-facts {
 	padding: 1em;
+	font-size: .7em;
+	max-height: 4.1em;
+	overflow: hidden;
 }
 
 .idc-card-facts li {
-	font-size: .85em;
+	background: rgba(51,170,255,.1);
+	border-radius: 999999em;
 	padding: .25em 0;
 	opacity: .9;
 	text-align: left;
-	clear: both;
+	float: left;
+	padding: .2rem .4rem;
+	margin: .1rem;
 }
 
 .idc-card-footer {
@@ -144,7 +176,7 @@
 	text-align: center;
 	font-size: 8px;
 	padding: 1.5em 1em;
-	border-top: 1px solid rgba(0,0,0,.125);
+	border-top: 1px solid rgba(0,0,0,.075);
 }
 
 .idc-card-footer p {

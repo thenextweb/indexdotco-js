@@ -17,21 +17,31 @@ export default class Card extends AbstractElement {
 			'src': data.profile.avatar,
 			'class': config.cardPrefix+'header-avatar'
 		}));
-		$header.append(window.jQuery('<h2></h2>').attr({
+
+		var $headerMeta = window.jQuery('<div></div>').addClass(config.cardPrefix+'header-meta');
+		$header.append($headerMeta);
+
+		$headerMeta.append(window.jQuery('<h2></h2>').attr({
 			'class': config.cardPrefix+'header-title'
 		}).text(data.profile.name));
 
 		var $headerTags = window.jQuery('<ul></ul>').attr({
 			'class': config.cardPrefix+'header-tags'
 		})
-		if(data.info.market) {
-			$headerTags.append(window.jQuery('<li></li>').text(data.info.market));
+		if(data.info.markets) {
+			data.info.markets.map(function(market){
+				$headerTags.append(window.jQuery('<li></li>').text(market));
+			})
 		}
 		if(data.info.country) {
 			$headerTags.append(window.jQuery('<li></li>').text(data.info.country));
 		}
+		$headerMeta.append($headerTags);
 
-		$header.append($headerTags);
+		var $tagline = window.jQuery('<div></div>').addClass(config.cardPrefix+'tagline');
+		if(data.profile.tagline) {
+			$tagline.text(data.profile.tagline);
+		}
 
 		var $facts = window.jQuery('<div></div>').addClass(config.cardPrefix+'facts');
 		var $factsTags = window.jQuery('<ul></ul>').attr({
@@ -59,7 +69,9 @@ export default class Card extends AbstractElement {
 			$footer.html('<p>Click the icon below to view profile</p>');
 		}
 
-		let $element = window.jQuery('<div></div>').addClass(config.prefix+'card').append($header).append($facts).append($footer);
+		let $element =
+			window.jQuery('<div></div>').addClass(config.prefix+'card')
+			.append($header).append($tagline).append($facts).append($footer);
 
 		if(params.actionable){
 			$element.addClass(config.prefix+'card--actionable');
