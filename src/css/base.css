@@ -71,7 +71,7 @@
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
 	width: 18em;
-	height: 16em;
+	height: 15em;
 	display: inline-block;
 }
 
@@ -150,7 +150,11 @@
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
-	flex: 1 .1 0;
+}
+
+.idc-card-expando {
+	flex: 1 1 0;
+	display: block;
 }
 
 .idc-card-facts {

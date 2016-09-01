@@ -43,6 +43,8 @@ export default class Card extends AbstractElement {
 			$tagline.text(data.profile.tagline);
 		}
 
+		var $expando = window.jQuery('<div></div>').addClass(config.cardPrefix+'expando');
+
 		var $facts = window.jQuery('<div></div>').addClass(config.cardPrefix+'facts');
 		var $factsTags = window.jQuery('<ul></ul>').attr({
 			'class': config.cardPrefix+'facts-tags'
@@ -71,7 +73,7 @@ export default class Card extends AbstractElement {
 
 		let $element =
 			window.jQuery('<div></div>').addClass(config.prefix+'card')
-			.append($header).append($tagline).append($facts).append($footer);
+			.append($header).append($tagline).append($facts).append($expando).append($footer);
 
 		if(params.actionable){
 			$element.addClass(config.prefix+'card--actionable');
