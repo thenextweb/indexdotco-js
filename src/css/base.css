@@ -94,6 +94,7 @@
 }
 
 .idc-card-header {
+	height: 5.5em;
 	padding: 1em 1em 0;
 	border-bottom: 1px solid black;
 	text-align: left;
