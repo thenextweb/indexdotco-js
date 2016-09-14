@@ -10,7 +10,7 @@ export default class Card extends AbstractElement {
 			throw 'BAD_STRUCTURE';
 		}
 
-		var $header = window.jQuery('<a></a>')
+		var $header = window.jQuery('<a target="_blank"></a>')
 		$header.addClass(config.cardPrefix+'header');
 		$header.attr('href',data.profile.index_url)
 
@@ -60,7 +60,7 @@ export default class Card extends AbstractElement {
 		}
 		$facts.append($factsTags);
 
-		var $footer = window.jQuery('<a></a>');
+		var $footer = window.jQuery('<a target="_blank"></a>');
 		$footer.addClass(config.cardPrefix+'footer');
 		$footer.attr('href',data.profile.index_url);
 
