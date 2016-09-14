@@ -13,10 +13,6 @@ export default class Card extends AbstractElement {
 		var $header = window.jQuery('<a></a>')
 		$header.addClass(config.cardPrefix+'header');
 		$header.attr('href',data.profile.index_url)
-		$header.append(window.jQuery('<img></img>').attr({
-			'src': data.profile.avatar,
-			'class': config.cardPrefix+'header-avatar'
-		}));
 
 		var $headerMeta = window.jQuery('<div></div>').addClass(config.cardPrefix+'header-meta');
 		$header.append($headerMeta);
@@ -39,8 +35,12 @@ export default class Card extends AbstractElement {
 		$headerMeta.append($headerTags);
 
 		var $tagline = window.jQuery('<div></div>').addClass(config.cardPrefix+'tagline');
+		$tagline.append(window.jQuery('<img></img>').attr({
+			'src': data.profile.avatar,
+			'class': config.cardPrefix+'header-avatar'
+		}));
 		if(data.profile.tagline) {
-			$tagline.text(data.profile.tagline);
+			$tagline.append(window.jQuery('<p></p>').text(data.profile.tagline));
 		}
 
 		var $expando = window.jQuery('<div></div>').addClass(config.cardPrefix+'expando');
@@ -65,15 +65,16 @@ export default class Card extends AbstractElement {
 		$footer.attr('href',data.profile.index_url);
 
 		if(params.actionable){
-			$footer.html('<p>View this company on index</p>');
+			$footer.html('<p>View this company on <span>index</span></p>');
 		}
 		else {
 			$footer.html('<p>Click the icon below to view profile</p>');
 		}
 
+		$headerMeta.append($facts);
 		let $element =
 			window.jQuery('<div></div>').addClass(config.prefix+'card')
-			.append($header).append($tagline).append($facts).append($expando).append($footer);
+			.append($header).append($tagline).append($expando).append($footer);
 
 		if(params.actionable){
 			$element.addClass(config.prefix+'card--actionable');

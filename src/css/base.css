@@ -1,6 +1,8 @@
+.idc-cardStandalone {
+	margin: 10px !important;
+}
 .idc-card *, .idc-popover, .idc-card, .idc-cardStandalone {
 	clear: none;
-	display: block;
 	float: none;
 	margin: 0;
 	padding: 0;
@@ -8,7 +10,8 @@
 	border: none;
 	text-align: inherit;
 	list-style: none;
-	color: inherit;
+	background: #1d1d1d;
+	color: white;
 	text-decoration: none;
 	font-family: inherit;
 	box-sizing: border-box;
@@ -72,7 +75,7 @@
 .idc-cardStandalone {
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
-	width: 18em;
+	width: 22em;
 	height: 15em;
 	display: inline-block;
 }
@@ -91,10 +94,8 @@
 }
 
 .idc-card-header {
-	display: flex;
-	align-items: center;
-	padding: 1em;
-	border-bottom: 1px solid rgba(0,0,0,.075);
+	padding: 1em 1em 0;
+	border-bottom: 1px solid black;
 	text-align: left;
 	overflow: hidden;
 }
@@ -120,10 +121,11 @@
 	text-overflow: ellipsis;
 }
 .idc-card-header-tags {
-	max-height: 2.4em;
+	max-height: 1.2em;
 	font-size: .7em;
 	overflow: hidden;
 	margin-top: .33em;
+	white-space: nowrap;
 }
 .idc-card-header-tags li {
 	display: block;
@@ -147,11 +149,13 @@
 
 .idc-card-tagline {
 	padding: 1em 1em 0;
+	font-size: 0.9em;
 	line-height: 1.4em;
-	max-height: 4.8em;
+	max-height: 7.8em;
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .idc-card-expando {
@@ -160,14 +164,14 @@
 }
 
 .idc-card-facts {
-	padding: 1em;
+	padding: 0.7em 0;
 	font-size: .7em;
 	max-height: 5.4em;
 	overflow: hidden;
 }
 
 .idc-card-facts li {
-	background: rgba(51,170,255,.1);
+	background: #234056;
 	border-radius: 999999em;
 	opacity: .9;
 	text-align: left;
@@ -180,19 +184,18 @@
 
 .idc-card-footer {
 	text-transform: uppercase;
-	text-align: center;
-	font-size: 8px;
-	padding: 1.5em 1em;
+	font-size: 0.7em;
+	padding: 1em;
 	border-top: 1px solid rgba(0,0,0,.075);
 }
 
 .idc-card-footer p {
 	padding-bottom: 0!important;
 	opacity: .45;
-	text-align: center;
+	text-align: left;
 }
 
-.idc-card--actionable .idc-card-footer p {
+.idc-card--actionable .idc-card-footer span {
 	font-weight: 800;
 	color: #3af;
 	opacity: 1;
