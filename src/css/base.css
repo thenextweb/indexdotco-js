@@ -1,5 +1,12 @@
-.idc-cardStandalone {
-	margin: 10px !important;
+@media (max-width: 339px) {
+	.idc-cardStandalone {
+		margin: 10px 0 !important;
+	}
+}
+@media (min-width: 340px) {
+	.idc-cardStandalone {
+		margin: 10px !important;
+	}
 }
 .idc-card *, .idc-popover, .idc-card, .idc-cardStandalone {
 	clear: none;
@@ -75,7 +82,7 @@
 .idc-cardStandalone {
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
-	width: 22em;
+	width: 320px;
 	height: 16em;
 	display: inline-block;
 }
