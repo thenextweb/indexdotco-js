@@ -73,7 +73,7 @@
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
 	width: 18em;
-	height: 15em;
+	height: 19em;
 	display: inline-block;
 }
 
@@ -148,7 +148,8 @@
 .idc-card-tagline {
 	padding: 1em 1em 0;
 	line-height: 1.4em;
-	max-height: 4.8em;
+	max-height: 6.6em;
+	flex: 0 1 auto;
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
