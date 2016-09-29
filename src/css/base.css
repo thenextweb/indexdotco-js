@@ -89,6 +89,11 @@
 	justify-content: space-between;
 }
 
+.idc-card.idc-card--dark {
+	background-color: #222;
+	color: #fff;
+}
+
 .idc-card-header {
 	height: 5.7em;
 	padding: 1em;
