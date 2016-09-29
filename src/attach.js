@@ -13,18 +13,21 @@ var popoverCreated = new Event(config.prefix+'popoverCreated',{bubbles:true});
 
 var attachCard = function($element) {
 
-	var parsedElement = parseElement($element);
-	var rq = requestCardData(parsedElement.entity);
-	var $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone')
+	let parsedElement = parseElement($element);
+	let rq = requestCardData(parsedElement.entity);
+	let $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone')
+	let isDark = $element.hasClass(config.prefix+'hasCard--dark');
 
 	$element.replaceWith($card);
 	$element = $card;
 
 	rq.done(function(data){
 		try {
+			debugger;
 			let card = new Card({
 				data:data,
-				actionable:true
+				actionable:true,
+				dark: isDark
 			});
 			$card.append(card.domElement);
 			$element[0].dispatchEvent(elementCreated);

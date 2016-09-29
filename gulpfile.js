@@ -10,6 +10,9 @@ var webpackModule = {
 			test: /\.css$/, loader: "raw"
 		},
 		{
+			test: /\.mustache$/, loader: "raw"
+		},
+		{
 			test: /.js?$/,
 			loader: 'babel-loader',
 			query: {

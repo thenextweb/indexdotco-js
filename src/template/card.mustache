@@ -1,0 +1,65 @@
+<div class="
+	{{config.prefix}}card
+	{{#params.actionable}}
+		{{config.prefix}}card--actionable
+	{{/params.actionable}}
+	{{#params.dark}}
+		{{config.prefix}}card--dark
+	{{/params.dark}}
+">
+	<a
+		class="{{config.cardPrefix}}header"
+		href="{{data.profile.index_url}}"
+		target="_blank"
+	>
+		<div class="{{config.cardPrefix}}header-meta">
+			<h2 class="{{config.cardPrefix}}header-title">{{data.profile.name}}</h2>
+			{{#data.info.markets.length}}
+				<ul class="{{config.cardPrefix}}header-tags">
+					{{#data.info.markets}}
+						<li>{{.}}</li>
+					{{/data.info.markets}}
+				</ul>
+			{{/data.info.markets.length}}
+			<div class="{{config.cardPrefix}}facts">
+				<ul class="{{config.cardPrefix}}facts-tags">
+					{{#data.info.founded}}
+						<li>Founded in {{.}}</li>
+					{{/data.info.founded}}
+					{{#data.info.raised}}
+						<li>Raised {{.}}</li>
+					{{/data.info.raised}}
+					{{#data.info.employees}}
+						<li>{{.}} employees</li>
+					{{/data.info.employees}}
+				</ul>
+			</div>
+		</div>
+	</a>
+	<div class="{{config.cardPrefix}}tagline">
+		<img
+			class="{{config.cardPrefix}}header-avatar"
+			src="{{data.profile.avatar}}"
+		>
+		<p>{{data.profile.tagline}}</p>
+	</div>
+	<div class="{{config.cardPrefix}}expando"></div>
+	<a
+		class="{{config.cardPrefix}}footer"
+		href= "{{data.profile.index_url}}"
+		target="_blank"
+	>
+		{{#params.actionable}}
+			<span class="{{config.cardPrefix}}footer-blurrable">
+				View this company on
+			</span>
+			<span class="{{config.cardPrefix}}footer-logo">Index</span>
+		{{/params.actionable}}
+		{{^params.actionable}}
+			<span class="{{config.cardPrefix}}footer-blurrable">
+				Click to view this company on
+			</span>
+			<span class="{{config.cardPrefix}}footer-logo">Index</span>
+		{{/params.actionable}}
+	</a>
+</div>

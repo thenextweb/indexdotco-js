@@ -1,6 +1,5 @@
 .idc-card *, .idc-popover, .idc-card, .idc-cardStandalone {
 	clear: none;
-	display: block;
 	float: none;
 	margin: 0;
 	padding: 0;
@@ -8,10 +7,10 @@
 	border: none;
 	text-align: inherit;
 	list-style: none;
-	color: inherit;
 	text-decoration: none;
 	font-family: inherit;
 	box-sizing: border-box;
+	color: inherit;
 }
 
 .idc-hasIcon {
@@ -73,7 +72,7 @@
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
 	width: 18em;
-	height: 19em;
+	height: 17em;
 	display: inline-block;
 }
 
@@ -90,13 +89,18 @@
 	justify-content: space-between;
 }
 
+.idc-card.idc-card--dark {
+	background-color: #222;
+	color: #fff;
+}
+
 .idc-card-header {
-	display: flex;
-	align-items: center;
+	height: 5.7em;
 	padding: 1em;
 	border-bottom: 1px solid rgba(0,0,0,.075);
 	text-align: left;
 	overflow: hidden;
+	flex: 0 0 auto;
 }
 
 .idc-card-header-avatar {
@@ -106,6 +110,7 @@
 	min-height: 3.8em;
 	max-width: 3.8em;
 	max-height: 3.8em;
+
 	border-radius: 2px;
 	margin-right: 1em;
 	display: block;
@@ -124,10 +129,11 @@
 	text-overflow: ellipsis;
 }
 .idc-card-header-tags {
-	max-height: 2.4em;
+	max-height: 1.2em;
 	font-size: .7em;
 	overflow: hidden;
 	margin-top: .33em;
+	white-space: nowrap;
 }
 .idc-card-header-tags li {
 	display: block;
@@ -150,13 +156,14 @@
 }
 
 .idc-card-tagline {
-	padding: 1em 1em 0;
+	margin: 1em;
+	font-size: 0.9em;
 	line-height: 1.4em;
-	max-height: 6.6em;
-	flex: 0 1 auto;
+	max-height: 8.8em;
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .idc-card-expando {
@@ -165,14 +172,16 @@
 }
 
 .idc-card-facts {
-	padding: 1em;
 	font-size: .7em;
-	max-height: 5.4em;
+	max-height: 2em;
 	overflow: hidden;
+	margin-left: -.2rem;
+	margin-top: .5em;
 }
 
 .idc-card-facts li {
-	background: rgba(51,170,255,.1);
+	background: #3af;
+	color: #fff;
 	border-radius: 999999em;
 	opacity: .9;
 	text-align: left;
@@ -185,22 +194,22 @@
 
 .idc-card-footer {
 	text-transform: uppercase;
-	text-align: center;
-	font-size: 8px;
-	padding: 1.5em 1em;
+	font-size: 0.7em;
+	padding: 1em;
 	border-top: 1px solid rgba(0,0,0,.075);
 }
 
-.idc-card-footer p {
-	padding-bottom: 0!important;
-	opacity: .45;
-	text-align: center;
+.idc-card-footer {
+	text-align: left;
 }
 
-.idc-card--actionable .idc-card-footer p {
+.idc-card-footer-blurrable {
+	opacity: .5;
+}
+
+.idc-card-footer-logo {
 	font-weight: 800;
 	color: #3af;
-	opacity: 1;
 }
 
 @keyframes idc-hovercardFade {
