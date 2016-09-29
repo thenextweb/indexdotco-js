@@ -27,11 +27,11 @@
 		<script src="../node_modules/mocha/mocha.js"></script>
 		<script>
 			mocha.setup('bdd');
-			describe('readyness', function() {
+			describe('Rendering', function() {
 				this.timeout(10000);
 				var completeAt = 6;
 				var completed = 0;
-				it('Render 6 cards', function(done) {
+				it('should render 6 cards', function(done) {
 					document.addEventListener('idc-elementCreated',function(){
 						completed++;
 						if(completed >= completeAt) {
@@ -42,6 +42,14 @@
 						$(ev.target).trigger('mouseover');
 					});
 				});
+				after(function(){
+					if (window.callPhantom) {
+						var date = new Date()
+						var filename = "test/screenshots/" + date.getTime()
+						console.log("Taking screenshot " + filename)
+						callPhantom({'screenshot': filename})
+					}
+				})
 			});
 
 			var script = document.createElement('script');
