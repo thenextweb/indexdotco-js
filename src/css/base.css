@@ -72,7 +72,7 @@
 	border: 1px solid rgba(0,0,0,.075);
 	border-radius: 2px;
 	width: 18em;
-	height: 17em;
+	height: 18em;
 	display: inline-block;
 }
 
@@ -159,7 +159,7 @@
 	margin: 1em;
 	font-size: 0.9em;
 	line-height: 1.4em;
-	max-height: 8.8em;
+	max-height: 8.2em;
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
