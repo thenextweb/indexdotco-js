@@ -76,17 +76,19 @@
 	display: inline-block;
 }
 
-.idc-cardStandalone .idc-card {
-	height: 100%;
-	width: 100%;
-}
-
 .idc-card {
 	font-family: sans-serif;
 	color: inherit;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	background: transparent;
+}
+
+.idc-cardStandalone .idc-card {
+	height: 100%;
+	width: 100%;
+	background: #fff;
 }
 
 .idc-card.idc-card--dark {
