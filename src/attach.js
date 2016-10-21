@@ -23,7 +23,6 @@ var attachCard = function($element) {
 
 	rq.done(function(data){
 		try {
-			debugger;
 			let card = new Card({
 				data:data,
 				actionable:true,
@@ -128,29 +127,33 @@ const attach = function(typeOrTypes) {
 	else {
 		let type = typeOrTypes;
 		if(type === 'icon') {
-			window.jQuery('a.'+config.prefix+'hasIcon').each(
+			window.jQuery('a.'+config.prefix+'hasIcon:not(.idc-attached)').each(
 				function(){
+					window.jQuery(this).addClass('idc-attached');
 					attachIcon(window.jQuery(this))
 				}
 			);
 		}
 		else if(type === 'card') {
-			window.jQuery('a.'+config.prefix+'hasCard').each(
+			window.jQuery('a.'+config.prefix+'hasCard:not(.idc-attached)').each(
 				function(){
+					window.jQuery(this).addClass('idc-attached');
 					attachCard(window.jQuery(this))
 				}
 			);
 		}
 		else if(type === 'hoverable') {
-			window.jQuery('a.'+config.prefix+'hasHover').each(
+			window.jQuery('a.'+config.prefix+'hasHover:not(.idc-attached)').each(
 				function(){
+					window.jQuery(this).addClass('idc-attached');
 					attachIcon(window.jQuery(this))
 				}
 			);
 		}
 		else if(type === 'list') {
-			window.jQuery('a.'+config.prefix+'hasList').each(
+			window.jQuery('a.'+config.prefix+'hasList:not(.idc-attached)').each(
 				function(){
+					window.jQuery(this).addClass('idc-attached');
 					attachList(window.jQuery(this))
 				}
 			);
