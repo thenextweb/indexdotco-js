@@ -141,6 +141,13 @@ const attach = function(typeOrTypes) {
 				}
 			);
 		}
+		else if(type === 'hoverable') {
+			window.jQuery('a.'+config.prefix+'hasHover').each(
+				function(){
+					attachIcon(window.jQuery(this))
+				}
+			);
+		}
 		else if(type === 'list') {
 			window.jQuery('a.'+config.prefix+'hasList').each(
 				function(){

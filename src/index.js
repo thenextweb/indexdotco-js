@@ -10,6 +10,6 @@ cssTag.innerHTML= css;
 loadJQuery(function(){
 	window.jQuery(function(){
 		document.body.appendChild(cssTag);
-		attach(['icon','card','list']);
+		attach(['icon','card','list','hoverable']);
 	});
 })
