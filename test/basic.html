@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 	<head>
+		<meta charset="UTF-8">
 		<title>Test page</title>
 	</head>
 	<body>
@@ -17,6 +18,9 @@
 				<a href='https://index.co/company/thenextweb' target='_blank' class='idc-hasIcon'></a>
 				<a href='https://index.co/company/overnightapp' target='_blank' class='idc-hasIcon'></a>
 				<hr>
+				<a href='https://index.co/company/indexdotco' target='_blank' class='idc-hasHover'>😀</a>
+				<a href='https://index.co/company/thenextweb' target='_blank' class='idc-hasHover'>😬</a>
+				<a href='https://index.co/company/overnightapp' target='_blank' class='idc-hasHover'>😁</a>
 			</div>
 			<div class="layout-col layout-col--console">
 				<div id="mocha"></div>
@@ -29,9 +33,9 @@
 			mocha.setup('bdd');
 			describe('Rendering', function() {
 				this.timeout(10000);
-				var completeAt = 6;
+				var completeAt = 9;
 				var completed = 0;
-				it('should render 6 cards', function(done) {
+				it('should render '+completeAt+' cards', function(done) {
 					document.addEventListener('idc-elementCreated',function(){
 						completed++;
 						if(completed >= completeAt) {
