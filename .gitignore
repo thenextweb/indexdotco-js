@@ -1,4 +1,4 @@
 node_modules/*
 dist/indexdotco-dev*
-
 test/screenshots/*
+!test/screenshots/.gitexists

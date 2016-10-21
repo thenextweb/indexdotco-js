@@ -23,11 +23,15 @@ var webpackModule = {
 };
 
 gulp.task('test', function () {
-    return gulp
-    .src('test/basic.html')
-    .pipe(mochaPhantomJS({
-        suppressStderr: true,
+	return gulp
+	.src('test/basic.html')
+	.pipe(mochaPhantomJS({
+		suppressStderr: true,
 		phantomjs: {
+			viewportSize: {
+				width: 1440,
+				height: 900
+			},
 			settings: {
 				webSecurityEnabled: false
 			}
