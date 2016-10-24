@@ -90,7 +90,7 @@ gulp.task('make', function() {
 })
 
 gulp.task('release', function(){
-	return gulp.src('./dist/indexdotco.js')
+	return gulp.src('dist/indexdotco.js')
 		.pipe(release({
 			manifest: require('./package.json')
 		}));
