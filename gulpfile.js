@@ -3,6 +3,8 @@ var webpack = require('webpack-stream');
 var uglify = require('gulp-uglify');
 var path = require('path');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
+var WrapperPlugin = require('wrapper-webpack-plugin');
+
 
 var webpackModule = {
 	loaders: [
@@ -49,6 +51,12 @@ gulp.task('default', function() {
 				library: 'indexDotCo',
 				libraryTarget: 'umd'
 			},
+			plugins: [
+				new WrapperPlugin({
+			      header: '/* index.co cards – dev */',
+			      footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
+			    })
+			],
 			module: webpackModule,
 			resolve: {
 				root: path.resolve('./src')
@@ -65,6 +73,12 @@ gulp.task('make', function() {
 				library: 'indexDotCo',
 				libraryTarget: 'umd'
 			},
+			plugins: [
+				new WrapperPlugin({
+				  header: '/* index.co cards – dev */',
+				  footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
+				})
+			],
 			module: webpackModule,
 			resolve: {
 				root: path.resolve('./src')

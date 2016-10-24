@@ -19,7 +19,7 @@ function startAndGetApi(settings){
 	cssTag.type = "text/css";
 	cssTag.innerHTML= css;
 
-	const indexDotCo = {
+	const api = {
 		'attach': function(){
 			this.event.trigger('significantDomChange');
 		},
@@ -40,11 +40,11 @@ function startAndGetApi(settings){
 		});
 	})
 
-	window.document.body.appendChild(cssTag);
-	if(!settings.delay) indexDotCo.attach();
+	if(!settings.disableCss) window.document.body.appendChild(cssTag);
+	if(!settings.delay) api.attach();
 
-	return indexDotCo;
+	return api;
 
 }
 
-module.exports = startAndGetApi();
+module.exports = startAndGetApi;
