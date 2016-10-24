@@ -93,5 +93,8 @@ gulp.task('release', function(){
 	return gulp.src('dist/indexdotco.js')
 		.pipe(release({
 			manifest: require('./package.json')
-		}));
+		}).on('error',function(e){
+			this.emit('end');
+		}))
+
 });
