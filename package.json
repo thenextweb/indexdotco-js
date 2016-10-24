@@ -1,13 +1,13 @@
 {
   "name": "indexdotco-js",
-  "version": "1.3.7",
+  "version": "1.3.8",
   "description": "Javascript plugin for Index.co embeds",
   "main": "index.js",
   "scripts": {
     "gulp": "./node_modules/.bin/gulp",
     "install": "gulp make",
     "test": "gulp test",
-    "release": "npm publish && gulp release"
+    "release": "npm publish && npm install && gulp release"
   },
   "repository": {
     "type": "git",
