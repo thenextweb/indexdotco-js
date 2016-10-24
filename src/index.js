@@ -4,17 +4,47 @@ import loadJQuery from './tool/loadJQuery';
 
 import attach from './attach.js';
 
-let cssTag = document.createElement("style");
-cssTag.type = "text/css";
-cssTag.innerHTML= css;
+function startAndGetApi(settings){
 
-document.body.addEventListener(config.prefix+'significantDomChange',function(){
-	attach(['icon','card','list','hoverable']);
-})
+	if(!settings) {
+		if(window.indexDotCoSettings) {
+			settings = window.indexDotCoSettings;
+		}
+		else {
+			settings = {};
+		}
+	}
 
-loadJQuery(function(){
-	window.jQuery(function(){
-		document.body.appendChild(cssTag);
-		document.body.dispatchEvent((new Event(config.prefix+'significantDomChange')));
-	});
-})
+	let cssTag = window.document.createElement("style");
+	cssTag.type = "text/css";
+	cssTag.innerHTML= css;
+
+	const indexDotCo = {
+		'attach': function(){
+			this.event.trigger('significantDomChange');
+		},
+		'event' : {
+			'trigger': function(ev) {
+				if(ev === 'significantDomChange') {
+					window.document.body.dispatchEvent((new window.Event(config.prefix+'significantDomChange')));
+				}
+			}
+		}
+	}
+
+	document.body.addEventListener(config.prefix+'significantDomChange',function(){
+		loadJQuery(function(){
+			window.jQuery(function(){
+				attach(['icon','card','list','hoverable']);
+			});
+		});
+	})
+
+	window.document.body.appendChild(cssTag);
+	if(!settings.delay) indexDotCo.attach();
+
+	return indexDotCo;
+
+}
+
+module.exports = startAndGetApi();

@@ -27,40 +27,24 @@
 			</div>
 		</div>
 
-
 		<script src="../node_modules/mocha/mocha.js"></script>
+		<script>mocha.setup('bdd');</script>
+		<script src="test.js"></script>
 		<script>
-			mocha.setup('bdd');
-			describe('Rendering', function() {
-				this.timeout(10000);
-				var completeAt = 9;
-				var completed = 0;
-				it('should render '+completeAt+' cards', function(done) {
-					document.addEventListener('idc-elementCreated',function(){
-						completed++;
-						if(completed >= completeAt) {
-							done();
-						}
-					})
-					document.addEventListener('idc-popoverCreated',function(ev){
-						$(ev.target).trigger('mouseover');
-					});
-				});
-				after(function(){
-					if (window.callPhantom) {
-						var date = new Date()
-						var filename = "test/screenshots/" + date.getTime()
-						console.log("Taking screenshot " + filename)
-						callPhantom({'screenshot': filename})
-					}
-				})
-			});
-
-			var script = document.createElement('script');
-			script.src = window.location.hash === '#local' ? '../dist/indexdotco-dev.js' : '../dist/indexdotco.js';;
-			document.getElementsByTagName('head')[0].appendChild(script);
-
-			mocha.run();
+			window.async = function(u, c){
+				var d = document, t = 'script',
+				  o = d.createElement(t),
+				  s = d.getElementsByTagName(t)[0];
+				o.src = u;
+				if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+				s.parentNode.insertBefore(o, s);
+			}
+			window.indexDotCoSettings = {
+				delay: true
+			};
+			async(window.location.hash === '#local' ? '../dist/indexdotco-dev.js':'../dist/indexdotco.js',function(){
+				mocha.run();
+			})
 		</script>
 		<style>
 			@import "../node_modules/mocha/mocha.css";

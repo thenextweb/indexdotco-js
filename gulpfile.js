@@ -45,7 +45,9 @@ gulp.task('default', function() {
 			watch: true,
 			devtool: 'source-map',
 			output: {
-				filename: 'indexdotco-dev.js'
+				filename: 'indexdotco-dev.js',
+				library: 'indexDotCo',
+				libraryTarget: 'umd'
 			},
 			module: webpackModule,
 			resolve: {
@@ -59,7 +61,9 @@ gulp.task('make', function() {
 	return gulp.src('src/index.js')
 		.pipe(webpack({
 			output: {
-				filename: 'indexdotco.js'
+				filename: 'indexdotco.js',
+				library: 'indexDotCo',
+				libraryTarget: 'umd'
 			},
 			module: webpackModule,
 			resolve: {
