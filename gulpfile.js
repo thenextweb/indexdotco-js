@@ -4,7 +4,7 @@ var uglify = require('gulp-uglify');
 var path = require('path');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var WrapperPlugin = require('wrapper-webpack-plugin');
-
+var release = require('gulp-github-release');
 
 var webpackModule = {
 	loaders: [
