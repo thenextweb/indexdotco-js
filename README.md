@@ -4,7 +4,7 @@ JS for Index.co embeds in external sites
 ![showcase](https://github.com/thenextweb/indexdotco-js/blob/master/cover.png "How it works")
 
 ## Usage
-Just add `dist/indexdotco.js` to your site. Then use either of the following:
+Get the last `indexdotco.js` release on your site. Then use either of the following:
 
 Icon with hover functionality. `<a href='https://index.co/company/indexdotco' target='_blank' class='idc-hasIcon'></a>`
 

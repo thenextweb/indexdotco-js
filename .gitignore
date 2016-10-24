@@ -1,4 +1,7 @@
 node_modules/*
-dist/indexdotco-dev*
+
+dist/*
+!dist/.gitexists
+
 test/screenshots/*
 !test/screenshots/.gitexists
