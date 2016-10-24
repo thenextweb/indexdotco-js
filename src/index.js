@@ -23,6 +23,9 @@ function startAndGetApi(settings){
 		'attach': function(){
 			this.event.trigger('significantDomChange');
 		},
+		'info' : {
+			version: config.appVersion
+		},
 		'event' : {
 			'trigger': function(ev) {
 				if(ev === 'significantDomChange') {

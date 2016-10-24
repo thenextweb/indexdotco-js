@@ -24,18 +24,19 @@ var webpackModule = {
 	]
 };
 
-gulp.task('test', function () {
+gulp.task('test-browser', function () {
 	return gulp
-	.src('test/basic.html')
+	.src('test/index.html')
 	.pipe(mochaPhantomJS({
-		suppressStderr: true,
+		suppressStderr: false,
 		phantomjs: {
 			viewportSize: {
 				width: 1440,
 				height: 900
 			},
 			settings: {
-				webSecurityEnabled: false
+				webSecurityEnabled: false,
+				localToRemoteUrlAccessEnabled: true
 			}
 		}
 	}));
@@ -75,7 +76,7 @@ gulp.task('make', function() {
 			},
 			plugins: [
 				new WrapperPlugin({
-				  header: '/* index.co cards – dev */',
+				  header: '/* index.co cards */',
 				  footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
 				})
 			],
@@ -87,3 +88,10 @@ gulp.task('make', function() {
 		.pipe(uglify())
 		.pipe(gulp.dest('dist/'))
 })
+
+gulp.task('release', function(){
+	return gulp.src('./dist/indexdotco.js')
+		.pipe(release({
+			manifest: require('./package.json')
+		}));
+});
