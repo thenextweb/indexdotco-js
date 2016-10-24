@@ -1,6 +1,6 @@
 {
   "name": "indexdotco-js",
-  "version": "1.3.9",
+  "version": "1.3.10",
   "description": "Javascript plugin for Index.co embeds",
   "main": "index.js",
   "scripts": {
