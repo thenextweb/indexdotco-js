@@ -24,7 +24,7 @@ var webpackModule = {
 	]
 };
 
-gulp.task('test-browser', function () {
+gulp.task('test', function () {
 	return gulp
 	.src('test/index.html')
 	.pipe(mochaPhantomJS({
