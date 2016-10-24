@@ -4,7 +4,9 @@
   "description": "Javascript plugin for Index.co embeds",
   "main": "index.js",
   "scripts": {
-    "install": "gulp make"
+    "gulp": "./node_modules/.bin/gulp",
+    "install": "gulp make",
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
