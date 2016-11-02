@@ -66,7 +66,7 @@ var attachList = function($element) {
 }
 
 
-var attachIcon = function($element) {
+var attachHoverable = function($element,settings) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestCardData(parsedElement.entity);
@@ -86,7 +86,8 @@ var attachIcon = function($element) {
 					let popover = new Popover({
 						html: card.domElement,
 						top: $element.offset().top,
-						left: $element.offset().left + ($element.outerWidth() / 2)
+						left: $element.offset().left + ($element.outerWidth() / 2),
+						origin: $element[0]
 					});
 					popover.on('close',function(){
 						$element.data(config.prefix+'hasIndexPopover',false);
@@ -117,7 +118,7 @@ var attachIcon = function($element) {
 
 
 
-const attach = function(typeOrTypes) {
+const attach = function(typeOrTypes,settings) {
 
 	if(typeof typeOrTypes === 'object') {
 		typeOrTypes.map(function(type){
@@ -130,7 +131,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasIcon:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachIcon(window.jQuery(this))
+					attachHoverable(window.jQuery(this),settings)
 				}
 			);
 		}
@@ -138,7 +139,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasCard:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachCard(window.jQuery(this))
+					attachCard(window.jQuery(this),settings);
 				}
 			);
 		}
@@ -146,7 +147,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasHover:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachIcon(window.jQuery(this))
+					attachHoverable(window.jQuery(this),settings)
 				}
 			);
 		}
@@ -154,7 +155,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasList:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachList(window.jQuery(this))
+					attachList(window.jQuery(this),settings)
 				}
 			);
 		}

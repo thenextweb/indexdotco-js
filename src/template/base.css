@@ -41,7 +41,6 @@
 	line-height: 1.2;
 	z-index: 99999;
 	width: 18em;
-	pointer-events: none;
 }
 .idc-popover:before {
 	position: absolute;
@@ -61,10 +60,12 @@
 }
 
 .idc-popover.idc-popover--in {
+	pointer-events: none;
 	animation: idc-hovercardFade 100ms forwards ease-in-out;
 }
 
 .idc-popover.idc-popover--out {
+	pointer-events: none;
 	animation: idc-hovercardFade 100ms forwards ease-in-out reverse;
 }
 

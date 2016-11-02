@@ -6,6 +6,10 @@ export default class AbstractElement {
 		return this.$element;
 	}
 
+	get domElementRaw() {
+		return this.$element[0];
+	}
+
 	on(event,callback){
 		this.$element.on('internal-'+config.prefix+event,callback);
 	}
