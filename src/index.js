@@ -1,24 +1,23 @@
 import config from 'config';
-import css from './css/base.css';
-import loadJQuery from './tool/loadJQuery';
-
+import makeDefault from './tool/makeDefault';
+import importer from  './importer.js';
 import attach from './attach.js';
+
+import documentReady from 'document-ready-promise';
 
 function startAndGetApi(settings){
 
 	if(!settings) {
-		if(window.indexDotCoSettings) {
-			settings = window.indexDotCoSettings;
-		}
-		else {
-			settings = {};
-		}
+		settings = window.indexDotCoSettings ? window.indexDotCoSettings : {};
+	}
+	try {
+		settings = makeDefault(settings,config.defaults);
+	} catch (e) {
+		console.error(e);
+		settings = config.defaults;
 	}
 
-	let cssTag = window.document.createElement("style");
-	cssTag.type = "text/css";
-	cssTag.innerHTML= css;
-
+	const importAssets = importer.importAssets(settings);
 	const api = {
 		'attach': function(){
 			this.event.trigger('significantDomChange');
@@ -36,14 +35,14 @@ function startAndGetApi(settings){
 	}
 
 	document.body.addEventListener(config.prefix+'significantDomChange',function(){
-		loadJQuery(function(){
-			window.jQuery(function(){
-				attach(['icon','card','list','hoverable']);
-			});
+		documentReady()
+		.then(function(){
+			return importAssets;
+		}).then(function(){
+			attach(['icon','card','list','hoverable'],settings);
 		});
 	})
 
-	if(!settings.disableCss) window.document.body.appendChild(cssTag);
 	if(!settings.delay) api.attach();
 
 	return api;

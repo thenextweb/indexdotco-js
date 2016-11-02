@@ -8,4 +8,9 @@ config.version = '0.0.2';
 config.appVersion = version;
 config.endpoint = 'https://index.co/api/';
 
+config.defaults = {
+	disableCss: false,
+	delay: false
+}
+
 export default config;
