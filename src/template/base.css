@@ -162,12 +162,12 @@
 	margin: 1em;
 	font-size: 0.9em;
 	line-height: 1.4em;
-	max-height: 8.2em;
 	text-align: left;
 	font-weight: 300;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	flex: 1 1 0;
+	margin-bottom: 0;
 }
 
 .idc-card-tagline-text {
