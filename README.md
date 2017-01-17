@@ -3,7 +3,7 @@ JS for Index.co embeds in external sites
 
 [Download it here](https://github.com/thenextweb/indexdotco-js/releases)
 
-![showcase](http://i.imgur.com/JSRPtqa.png "How it works")
+!(http://i.imgur.com/XohvVWZ.gif "How it works")
 
 ## Usage
 Get the last `indexdotco.js` [release](https://github.com/thenextweb/indexdotco-js/releases)
