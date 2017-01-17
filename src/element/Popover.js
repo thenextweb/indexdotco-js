@@ -19,20 +19,20 @@ export default class Popover extends AbstractElement {
 	place(){
 
 		let self = this;
-		self.domElement.css({
+		self.$element.css({
 			visibility:'hidden'
 		});
 		super.place();
-		self.domElement.css({
-			top: this.position.top - self.domElement.outerHeight() - 5,
-			left: this.position.left - (self.domElement.outerWidth()/2),
+		self.$element.css({
+			top: this.position.top - self.$element.outerHeight() - 5,
+			left: this.position.left - (self.$element.outerWidth()/2),
 			visibility:'visible'
 		});
-		self.domElement.addClass(config.prefix+'popover--in');
-		self.domElement.one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',function(){
-			self.domElement.removeClass(config.prefix+'popover--in');
+		self.$element.addClass(config.prefix+'popover--in');
+		self.$element.one('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd',function(){
+			self.$element.removeClass(config.prefix+'popover--in');
 		})
-		self.domElementRaw.addEventListener('mouseleave',function(ev){
+		self.$element[0].addEventListener('mouseleave',function(ev){
 			self.remove();
 		});
 		self.origin.addEventListener('mouseleave',function(ev){
@@ -54,7 +54,12 @@ export default class Popover extends AbstractElement {
 		this.origin = params.origin;
 
 		$popover.attr('class',config.prefix+'popover');
-		$popover.html(params.html);
+		if(params.element) {
+			params.element.place($popover);
+		}
+		else {
+			$popover.html(params.html);
+		}
 		return $popover;
 
 	}
