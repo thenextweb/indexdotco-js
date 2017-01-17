@@ -11,8 +11,7 @@ var elementCreated = new Event(config.prefix+'elementCreated',{bubbles:true});
 var popoverCreated = new Event(config.prefix+'popoverCreated',{bubbles:true});
 
 
-var attachCard = function($element) {
-
+var attachCard = function($element,settings) {
 	let parsedElement = parseElement($element);
 	let rq = requestCardData(parsedElement.entity);
 	let $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone')
@@ -26,9 +25,10 @@ var attachCard = function($element) {
 			let card = new Card({
 				data:data,
 				actionable:true,
-				dark: isDark
+				dark: isDark,
+				settings: settings
 			});
-			$card.append(card.domElement);
+			card.place($card);
 			$element[0].dispatchEvent(elementCreated);
 		} catch(error){
 			console.error(`[index] error building card for ${parsedElement.entity}`);
@@ -38,7 +38,7 @@ var attachCard = function($element) {
 }
 
 
-var attachList = function($element) {
+var attachList = function($element,settings) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestListData(parsedElement.entity);
@@ -51,9 +51,10 @@ var attachList = function($element) {
 			for (const data of many_data) {
 				let card = new Card({
 					data:data,
-					actionable:true
+					actionable:true,
+					settings: settings
 				});
-				$card.append(card.domElement);
+				card.place($card);
 				let $a = base.clone();
 				$card.after($a);
 				$card = $a;
@@ -66,7 +67,7 @@ var attachList = function($element) {
 }
 
 
-var attachIcon = function($element) {
+var attachHoverable = function($element,settings) {
 
 	var parsedElement = parseElement($element);
 	var rq = requestCardData(parsedElement.entity);
@@ -81,12 +82,14 @@ var attachIcon = function($element) {
 			rq.done(function(data){
 				try {
 					let card = new Card({
-						data: data
+						data: data,
+						settings: settings
 					});
 					let popover = new Popover({
-						html: card.domElement,
+						element: card,
 						top: $element.offset().top,
-						left: $element.offset().left + ($element.outerWidth() / 2)
+						left: $element.offset().left + ($element.outerWidth() / 2),
+						origin: $element[0]
 					});
 					popover.on('close',function(){
 						$element.data(config.prefix+'hasIndexPopover',false);
@@ -117,11 +120,11 @@ var attachIcon = function($element) {
 
 
 
-const attach = function(typeOrTypes) {
+const attach = function(typeOrTypes,settings) {
 
 	if(typeof typeOrTypes === 'object') {
 		typeOrTypes.map(function(type){
-			attach(type);
+			attach(type,settings);
 		})
 	}
 	else {
@@ -130,7 +133,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasIcon:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachIcon(window.jQuery(this))
+					attachHoverable(window.jQuery(this),settings)
 				}
 			);
 		}
@@ -138,7 +141,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasCard:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachCard(window.jQuery(this))
+					attachCard(window.jQuery(this),settings);
 				}
 			);
 		}
@@ -146,7 +149,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasHover:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachIcon(window.jQuery(this))
+					attachHoverable(window.jQuery(this),settings)
 				}
 			);
 		}
@@ -154,7 +157,7 @@ const attach = function(typeOrTypes) {
 			window.jQuery('a.'+config.prefix+'hasList:not(.idc-attached)').each(
 				function(){
 					window.jQuery(this).addClass('idc-attached');
-					attachList(window.jQuery(this))
+					attachList(window.jQuery(this),settings)
 				}
 			);
 		}

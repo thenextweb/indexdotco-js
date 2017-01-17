@@ -53,10 +53,13 @@ gulp.task('default', function() {
 				libraryTarget: 'umd'
 			},
 			plugins: [
+				new webpack.webpack.ProvidePlugin({
+					Promise: 'es6-promise-promise'
+				}),
 				new WrapperPlugin({
-			      header: '/* index.co cards – dev */',
-			      footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
-			    })
+					header: '/* index.co cards – dev */',
+					footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
+				})
 			],
 			module: webpackModule,
 			resolve: {
@@ -75,6 +78,9 @@ gulp.task('make', function() {
 				libraryTarget: 'umd'
 			},
 			plugins: [
+				new webpack.webpack.ProvidePlugin({
+					Promise: 'es6-promise-promise'
+				}),
 				new WrapperPlugin({
 				  header: '/* index.co cards */',
 				  footer: "if(window.indexDotCo && typeof window.indexDotCo === 'function'){window.indexDotCo = window.indexDotCo()}"
