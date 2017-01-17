@@ -27,7 +27,7 @@ export default class Card extends AbstractElement {
 				lastHeight = $taglineTextDiv[0].offsetHeight;
 			}
 			if(lines > settings.maxLines) {
-				words = words -1;
+				words = words - 2;
 				break;
 			}
 		}
