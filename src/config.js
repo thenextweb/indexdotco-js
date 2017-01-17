@@ -11,7 +11,7 @@ config.endpoint = 'https://index.co/api/';
 config.defaults = {
 	disableCss: false,
 	delay: false,
-	maxLines: 6
+	maxLines: 5
 }
 
 export default config;
