@@ -2,14 +2,6 @@ import config from 'config';
 
 export default class AbstractElement {
 
-	get domElement(){
-		return this.$element;
-	}
-
-	get domElementRaw() {
-		return this.$element[0];
-	}
-
 	on(event,callback){
 		this.$element.on('internal-'+config.prefix+event,callback);
 	}
@@ -24,7 +16,7 @@ export default class AbstractElement {
 
 	place($location) {
 		if(!$location) $location = window.jQuery('body');
-		$location.append(this.domElement);
+		$location.append(this.$element);
 	}
 
 	constructor(params){

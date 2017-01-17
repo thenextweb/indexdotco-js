@@ -167,11 +167,18 @@
 	font-weight: 300;
 	overflow: hidden;
 	text-overflow: ellipsis;
+	flex: 1 1 0;
 }
 
-.idc-card-expando {
-	flex: 1 1 0;
-	display: block;
+.idc-card-tagline-text {
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	-ms-word-break: break-all;
+	word-break: break-word;
+	-ms-hyphens: auto;
+	-moz-hyphens: auto;
+	-webkit-hyphens: auto;
+	hyphens: auto;
 }
 
 .idc-card-facts {
