@@ -202,6 +202,11 @@
 	line-height: 1em;
 }
 
+.idc-card-facts li.idc--alt {
+	background: #DDD;
+	color: black;
+}
+
 .idc-card-footer {
 	text-transform: uppercase;
 	font-size: 0.7em;

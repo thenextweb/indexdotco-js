@@ -23,6 +23,9 @@
 			{{/data.info.markets.length}}
 			<div class="{{config.cardPrefix}}facts">
 				<ul class="{{config.cardPrefix}}facts-tags">
+					{{#data.source}}
+						<li class="{{config.prefix}}-alt">{{.}}</li>
+					{{/data.source}}
 					{{#data.info.founded}}
 						<li>Founded in {{.}}</li>
 					{{/data.info.founded}}
