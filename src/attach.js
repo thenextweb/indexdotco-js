@@ -41,7 +41,7 @@ var attachCard = function($element,settings) {
 var attachList = function($element,settings) {
 
 	var parsedElement = parseElement($element);
-	var rq = requestListData(parsedElement.entity);
+	var rq = requestListData(parsedElement.entity, parsedElement.qs);
 	var $card = window.jQuery('<div></div>').addClass(config.prefix+'cardStandalone');
 
 	$element.replaceWith($card);

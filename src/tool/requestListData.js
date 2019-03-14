@@ -1,8 +1,8 @@
 import config from 'config';
 
-export default function(list) {
+export default function(list, qs) {
 
-	let url = config.endpoint+'list/'+list+'?version='+config.version;
+	let url = config.endpoint+'list/'+list+'?version='+config.version+'&'+(qs || '');
 
 	var rq = window.jQuery.ajax({
 		dataType: "json",
